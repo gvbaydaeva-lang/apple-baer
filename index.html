@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#4f8cff" />
+  <meta name="description" content="Оригинальная техника Apple, Dyson и Samsung в Элисте. Актуальные iPhone, MacBook, доставка 1–2 дня." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Техника Apple в наличии и на заказ</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg" />
+  <link rel="apple-touch-icon" href="assets/icons/icon.svg" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #131a2e;
+      --card: rgba(255,255,255,0.08);
+      --text: #ffffff;
+      --muted: #b8c0d9;
+      --accent: #4f8cff;
+      --accent-2: #7b61ff;
+      --success: #19c37d;
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 12px 30px rgba(0,0,0,0.28);
+      --radius: 22px;
+      --max-width: 460px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(123, 97, 255, 0.22), transparent 28%),
+        radial-gradient(circle at top left, rgba(79, 140, 255, 0.22), transparent 24%),
+        linear-gradient(180deg, #0a0f1c 0%, #10172a 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .app {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 14px 110px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      padding: 10px 0 14px;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(11,16,32,0.92) 0%, rgba(11,16,32,0.66) 100%);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      box-shadow: 0 8px 18px rgba(79,140,255,0.35);
+      flex-shrink: 0;
+    }
+
+    .brand-title-wrap {
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-subtitle {
+      margin: 4px 0 0;
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .phone-link {
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .hero {
+      margin-top: 8px;
+      background: linear-gradient(145deg, rgba(79,140,255,0.14), rgba(123,97,255,0.14));
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      animation: heroPulse 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroPulse {
+      from { box-shadow: var(--shadow); }
+      to { box-shadow: 0 16px 40px rgba(79, 140, 255, 0.18), 0 12px 30px rgba(0,0,0,0.28); }
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      appearance: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 800;
+      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(79,140,255,0.25);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 1px solid var(--border);
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #17a96b, #19c37d);
+      color: #fff;
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .section {
+      margin-top: 18px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 900;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      margin: -2px 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .info-grid,
+    .mini-grid,
+    .review-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .info-card,
+    .product-card,
+    .mini-card,
+    .order-panel,
+    .callback-panel,
+    .footer-card,
+    .buyer-card,
+    .review-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .info-card h3,
+    .product-card h3,
+    .mini-card h3,
+    .buyer-card h3,
+    .review-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .info-card p,
+    .mini-card p,
+    .product-card p,
+    .buyer-card p,
+    .review-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .icon-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.1);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .catalog-layout {
+      display: grid;
+      gap: 14px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .filter-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      flex: 0 0 auto;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.07);
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .chip:active {
+      transform: scale(0.96);
+    }
+
+    .chip.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-color: transparent;
+    }
+
+    .product-card {
+      padding: 16px;
+      animation: cardEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .product-visual-wrap {
+      margin: 12px 0 4px;
+    }
+
+    .product-visual {
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
+
+    .product-img.img-swap {
+      animation: imgSwap 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes imgSwap {
+      from {
+        opacity: 0.55;
+        transform: scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .product-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .product-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+      color: #fff;
+    }
+
+    .price-from {
+      font-size: 14px;
+      font-weight: 900;
+      color: #fff;
+      background: rgba(25,195,125,0.12);
+      border: 1px solid rgba(25,195,125,0.35);
+      padding: 8px 10px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+
+    .selectors {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .selector-group {
+      display: grid;
+      gap: 6px;
+    }
+
+    .selector-group label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    select, input, textarea {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      padding: 13px 14px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    select option {
+      color: #111;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 96px;
+      font-family: inherit;
+    }
+
+    .selected-price {
+      margin-top: 12px;
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+    }
+
+    .selected-price-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .selected-price-value {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .selected-summary {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .product-actions {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .mini-card .price-note {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .advantages {
+      display: grid;
+      gap: 10px;
+    }
+
+    .adv-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .adv-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.1);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .adv-item h4 {
+      margin: 0 0 5px;
+      font-size: 14px;
+    }
+
+    .adv-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .buyer-card {
+      background: linear-gradient(145deg, rgba(79,140,255,0.16), rgba(123,97,255,0.16));
+    }
+
+    .buyer-layout {
+      display: grid;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    @media (min-width: 520px) {
+      .buyer-layout {
+        grid-template-columns: minmax(160px, 220px) 1fr;
+        align-items: start;
+      }
+    }
+
+    .buyer-photo {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.15);
+      animation: buyerReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .buyer-photo-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    @keyframes buyerReveal {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .buyer-list {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .buyer-list li {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: #fff;
+    }
+
+    .review-card .stars {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .review-author {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .order-panel h3,
+    .callback-panel h3,
+    .footer-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .order-panel p,
+    .callback-panel p,
+    .footer-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .order-preview {
+      margin-top: 10px;
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      white-space: pre-wrap;
+      color: #fff;
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 96px;
+    }
+
+    .messenger-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .small-note {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .footer-card {
+      margin-top: 18px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: calc(var(--max-width) - 16px);
+      z-index: 40;
+      background: rgba(12, 17, 32, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      padding: 10px 6px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .notice {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    @media (min-width: 700px) {
+      .app {
+        max-width: 720px;
+      }
+
+      .info-grid,
+      .mini-grid,
+      .advantages,
+      .catalog-layout,
+      .review-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .bottom-nav {
+        max-width: 700px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero,
+      .product-card,
+      .buyer-photo,
+      .product-img.img-swap {
+        animation: none !important;
+      }
+
+      .product-card {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="brand-logo"></div>
+          <div class="brand-title-wrap">
+            <p class="brand-title">Техника в наличии и на заказ</p>
+            <p class="brand-subtitle">Оригинальная продукция • Элиста • Доставка 1–2 дня</p>
+          </div>
+        </div>
+        <a class="phone-link" href="tel:YOUR_PHONE">Позвонить</a>
+      </div>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="badge-row">
+        <span class="badge">Оригинальная техника</span>
+        <span class="badge">В наличии и на заказ</span>
+        <span class="badge">Бесплатная доставка</span>
+      </div>
+
+      <h1>iPhone, MacBook и Dyson в Элисте</h1>
+      <p>
+        Подбор и продажа техники Apple для клиентов в Элисте. В каталоге — актуальные модели iPhone,
+        включая линейку iPhone 17, а также MacBook и Dyson. Можно выбрать цвет, память и формат SIM,
+        а цена пересчитывается под конкретную комплектацию.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#catalog" class="btn btn-primary">Смотреть каталог</a>
+        <a href="#order" class="btn btn-secondary">Оставить заявку</a>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2 class="section-title">О технике</h2>
+      <p class="section-subtitle">
+        Доступны устройства в наличии и под заказ. Доставка по Элисте — 1–2 дня.
+      </p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="icon-line">
+            <div class="icon">✅</div>
+            <h3>Только оригинальная продукция</h3>
+          </div>
+          <p>Подбираются только оригинальные устройства и востребованные комплектации.</p>
+        </div>
+
+        <div class="info-card">
+          <div class="icon-line">
+            <div class="icon">🚚</div>
+            <h3>Быстрая доставка</h3>
+          </div>
+          <p>Бесплатная доставка по Элисте. Средний срок — от 1 до 2 дней.</p>
+        </div>
+
+        <div class="info-card">
+          <div class="icon-line">
+            <div class="icon">📦</div>
+            <h3>Наличие и заказ</h3>
+          </div>
+          <p>Популярные модели доступны сразу, редкие цвета и комплектации привозятся под запрос.</p>
+        </div>
+
+        <div class="info-card">
+          <div class="icon-line">
+            <div class="icon">🎁</div>
+            <h3>Подарок к iPhone</h3>
+          </div>
+          <p>При покупке iPhone — стекло и чехол в подарок.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="buyer">
+      <h2 class="section-title">О байере</h2>
+      <div class="buyer-card">
+        <div class="buyer-layout">
+          <figure class="buyer-photo">
+            <img
+              class="buyer-photo-img"
+              src="assets/placeholder-buyer.svg"
+              alt=""
+              width="320"
+              height="240"
+              decoding="async"
+            />
+          </figure>
+          <div class="buyer-body">
+            <div class="icon-line">
+              <div class="icon">💼</div>
+              <h3>Опытный байер техники</h3>
+            </div>
+            <p>
+              Байер занимается продажей техники много лет, помогает подобрать оптимальную модель,
+              находит нужные комплектации и сопровождает клиента от выбора до получения заказа.
+            </p>
+            <ul class="buyer-list">
+              <li>Много лет в продаже техники и подборе актуальных моделей</li>
+              <li>Помощь с выбором цвета, памяти, eSIM или физической SIM</li>
+              <li>Подбор техники под бюджет, задачи и наличие</li>
+              <li>Можно заказать Apple, Samsung, Dyson и другие устройства по запросу</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="advantages">
+      <h2 class="section-title">Преимущества</h2>
+
+      <div class="advantages">
+        <div class="adv-item">
+          <div class="adv-icon">💸</div>
+          <div>
+            <h4>Самые низкие цены в городе</h4>
+            <p>Выгодные условия на популярные модели iPhone, MacBook и другую технику.</p>
+          </div>
+        </div>
+
+        <div class="adv-item">
+          <div class="adv-icon">🎁</div>
+          <div>
+            <h4>Подарок при покупке iPhone</h4>
+            <p>Стекло и чехол в подарок при покупке iPhone.</p>
+          </div>
+        </div>
+
+        <div class="adv-item">
+          <div class="adv-icon">🚗</div>
+          <div>
+            <h4>Бесплатная доставка</h4>
+            <p>Быстрая доставка по Элисте без доплаты.</p>
+          </div>
+        </div>
+
+        <div class="adv-item">
+          <div class="adv-icon">🛒</div>
+          <div>
+            <h4>Техника под запрос</h4>
+            <p>Можно привезти Samsung, Dyson, MacBook и другие устройства по индивидуальному запросу.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="catalog">
+      <h2 class="section-title">Каталог iPhone</h2>
+      <p class="section-subtitle">
+        В каталоге только актуальные модели. Линейка iPhone 13 и iPhone 14 убрана, добавлены модели iPhone 17.
+      </p>
+
+      <div class="filter-bar" id="filterBar">
+        <button class="chip active" data-filter="all">Все модели</button>
+        <button class="chip" data-filter="latest">iPhone 17</button>
+        <button class="chip" data-filter="best">Хиты</button>
+        <button class="chip" data-filter="budget">Выгодные</button>
+      </div>
+
+      <div class="catalog-layout" id="iphoneCatalog"></div>
+    </section>
+
+    <section class="section" id="macbook">
+      <h2 class="section-title">MacBook</h2>
+      <p class="section-subtitle">Несколько популярных моделей. Другие конфигурации доступны под запрос.</p>
+
+      <div class="mini-grid">
+        <div class="mini-card">
+          <h3>MacBook Air 13&quot; M2</h3>
+          <p>Лёгкий и быстрый ноутбук для работы, учёбы, дизайна и повседневных задач.</p>
+          <span class="price-note">от 92 990 ₽</span>
+        </div>
+
+        <div class="mini-card">
+          <h3>MacBook Air 13&quot; M3</h3>
+          <p>Современная модель с высокой автономностью и производительностью. Доступны разные конфигурации.</p>
+          <span class="price-note">от 109 990 ₽</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dyson">
+      <h2 class="section-title">Dyson</h2>
+      <p class="section-subtitle">В наличии и под заказ. Также можно привезти другую технику Dyson по запросу.</p>
+
+      <div class="mini-grid">
+        <div class="mini-card">
+          <h3>Dyson Airwrap Complete Long</h3>
+          <p>Популярный стайлер для укладки и ухода за волосами. Разные цвета и комплектации по наличию.</p>
+          <span class="price-note">от 54 990 ₽</span>
+        </div>
+
+        <div class="mini-card">
+          <h3>Dyson Supersonic</h3>
+          <p>Фен Dyson с быстрым и бережным высушиванием. Доступен в наличии и под заказ.</p>
+          <span class="price-note">от 34 990 ₽</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <h2 class="section-title">Отзывы довольных покупателей</h2>
+      <p class="section-subtitle">Блок можно использовать как социальное доказательство на странице.</p>
+
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            Очень быстро помогли подобрать iPhone, всё подробно объяснили по памяти и SIM.
+            Доставка была на следующий день, телефон оригинальный, всё отлично.
+          </p>
+          <div class="review-author">— Алина, Элиста</div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            Заказывала Dyson под запрос. Всё пришло в оговоренный срок, упаковано аккуратно,
+            качеством полностью довольна.
+          </p>
+          <div class="review-author">— Марина, Элиста</div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            Подобрали iPhone по бюджету, сделали приятную цену, ещё и стекло с чехлом подарили.
+            Рекомендую.
+          </p>
+          <div class="review-author">— Тимур, Элиста</div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            Покупали MacBook, всё прошло спокойно и без лишней суеты. Видно, что человек давно
+            занимается техникой и знает, что предлагает.
+          </p>
+          <div class="review-author">— Саина, Элиста</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="order">
+      <div class="order-panel">
+        <h3>Оформление заказа</h3>
+        <p>
+          Выберите товар из каталога или оставьте заявку на нужную модель. Можно отправить заказ
+          сразу в мессенджер или запросить обратный звонок.
+        </p>
+
+        <div class="selectors">
+          <div class="selector-group">
+            <label for="orderProduct">Товар</label>
+            <select id="orderProduct"></select>
+          </div>
+
+          <div class="selector-group">
+            <label for="customerName">Ваше имя</label>
+            <input type="text" id="customerName" placeholder="Например, Алина" />
+          </div>
+
+          <div class="selector-group">
+            <label for="customerPhone">Телефон</label>
+            <input type="tel" id="customerPhone" placeholder="+7 (___) ___-__-__" />
+          </div>
+
+          <div class="selector-group">
+            <label for="customerComment">Комментарий</label>
+            <textarea id="customerComment" placeholder="Например: нужен новый, цвет чёрный, доставка завтра"></textarea>
+          </div>
+        </div>
+
+        <div class="order-preview" id="orderPreview">Выберите вариант товара — здесь появится готовый текст заявки.</div>
+
+        <div class="messenger-grid">
+          <a class="btn btn-success" id="whatsappLink" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn btn-secondary" id="telegramLink" href="#" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </div>
+
+        <div class="small-note">
+          Для работы кнопок замените в коде YOUR_PHONE, YOUR_WHATSAPP и YOUR_TELEGRAM.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="callback">
+      <div class="callback-panel">
+        <h3>Оставить заявку на звонок</h3>
+        <p>Если удобнее, клиент может оставить номер и просьбу перезвонить.</p>
+
+        <div class="selectors">
+          <div class="selector-group">
+            <label for="callbackName">Имя</label>
+            <input type="text" id="callbackName" placeholder="Ваше имя" />
+          </div>
+
+          <div class="selector-group">
+            <label for="callbackPhone">Телефон</label>
+            <input type="tel" id="callbackPhone" placeholder="+7 (___) ___-__-__" />
+          </div>
+
+          <div class="selector-group">
+            <label for="callbackText">Что вас интересует</label>
+            <textarea id="callbackText" placeholder="Например: хочу iPhone 17 Pro 256 GB, перезвоните мне"></textarea>
+          </div>
+        </div>
+
+        <div class="messenger-grid">
+          <a class="btn btn-success" id="callbackWhatsapp" href="#" target="_blank" rel="noopener noreferrer">Отправить в WhatsApp</a>
+          <a class="btn btn-secondary" id="callbackTelegram" href="#" target="_blank" rel="noopener noreferrer">Отправить в Telegram</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-card">
+      <h3>Техника в наличии и на заказ</h3>
+      <p>
+        Оригинальная техника Apple в Элисте: iPhone, MacBook, Dyson. Также можно заказать Samsung,
+        Dyson, MacBook и другие устройства под запрос.
+      </p>
+      <p class="notice">
+        Все модели, цены, цвета, память и типы SIM можно быстро редактировать в массиве <strong>iphoneProducts</strong> внутри кода.
+        Для фото модели добавьте у товара объект <strong>imageByColor</strong> (ключ — название цвета из варианта).
+        Фото байера замените в разметке: атрибут <code>src</code> у <code>.buyer-photo-img</code>.
+      </p>
+    </section>
+  </div>
+
+  <nav class="bottom-nav">
+    <a class="nav-link" href="#home">Главная</a>
+    <a class="nav-link" href="#catalog">iPhone</a>
+    <a class="nav-link" href="#reviews">Отзывы</a>
+    <a class="nav-link" href="tel:YOUR_PHONE">Звонок</a>
+  </nav>
+
+  <script>
+    const CONTACTS = {
+      phone: "YOUR_PHONE",
+      whatsapp: "YOUR_WHATSAPP",
+      telegram: "YOUR_TELEGRAM"
+    };
+
+    const iphoneProducts = [
+      {
+        id: "iphone-17",
+        name: "iPhone 17",
+        badge: "Новый",
+        tags: ["latest", "best"],
+        description: "Базовая модель новой линейки. Отличный вариант на каждый день.",
+        availability: "В наличии и под заказ",
+        variants: [
+          { color: "Black", memory: "128 GB", sim: "eSIM", price: 89990 },
+          { color: "Black", memory: "256 GB", sim: "nano-SIM", price: 98990 },
+          { color: "White", memory: "128 GB", sim: "eSIM", price: 90990 },
+          { color: "Blue", memory: "256 GB", sim: "eSIM", price: 99990 },
+          { color: "Pink", memory: "512 GB", sim: "nano-SIM", price: 117990 }
+        ]
+      },
+      {
+        id: "iphone-17-air",
+        name: "iPhone 17 Air",
+        badge: "Тренд",
+        tags: ["latest", "best"],
+        description: "Тонкий и лёгкий iPhone новой линейки с современным дизайном.",
+        availability: "В наличии и под заказ",
+        variants: [
+          { color: "Black", memory: "128 GB", sim: "eSIM", price: 99990 },
+          { color: "Silver", memory: "256 GB", sim: "eSIM", price: 109990 },
+          { color: "Gold", memory: "256 GB", sim: "nano-SIM", price: 110990 },
+          { color: "Blue", memory: "512 GB", sim: "eSIM", price: 127990 }
+        ]
+      },
+      {
+        id: "iphone-17-pro",
+        name: "iPhone 17 Pro",
+        badge: "Флагман",
+        tags: ["latest", "best"],
+        description: "Премиальная модель с продвинутой камерой и высокой производительностью.",
+        availability: "В наличии и под заказ",
+        variants: [
+          { color: "Black Titanium", memory: "128 GB", sim: "eSIM", price: 119990 },
+          { color: "Black Titanium", memory: "256 GB", sim: "nano-SIM", price: 128990 },
+          { color: "Natural Titanium", memory: "256 GB", sim: "eSIM", price: 129990 },
+          { color: "White Titanium", memory: "512 GB", sim: "eSIM", price: 145990 },
+          { color: "Graphite Titanium", memory: "1 TB", sim: "nano-SIM", price: 167990 }
+        ]
+      },
+      {
+        id: "iphone-17-pro-max",
+        name: "iPhone 17 Pro Max",
+        badge: "Топ",
+        tags: ["latest", "best"],
+        description: "Максимальная комплектация для тех, кто хочет всё самое лучшее.",
+        availability: "В наличии и под заказ",
+        imageByColor: {
+          "White Titanium": "assets/images/iphone-17-pro-max-silver.jpg",
+          "Desert Titanium": "assets/images/iphone-17-pro-max-orange.webp"
+        },
+        variants: [
+          { color: "Black Titanium", memory: "256 GB", sim: "eSIM", price: 134990 },
+          { color: "Natural Titanium", memory: "256 GB", sim: "nano-SIM", price: 136990 },
+          { color: "White Titanium", memory: "512 GB", sim: "eSIM", price: 151990 },
+          { color: "Desert Titanium", memory: "1 TB", sim: "nano-SIM", price: 174990 }
+        ]
+      },
+      {
+        id: "iphone-16-pro-max",
+        name: "iPhone 16 Pro Max",
+        badge: "Флагман",
+        tags: ["best"],
+        description: "Мощная модель с большим экраном и отличной автономностью.",
+        availability: "В наличии и под заказ",
+        variants: [
+          { color: "Black Titanium", memory: "256 GB", sim: "eSIM", price: 129990 },
+          { color: "Natural Titanium", memory: "256 GB", sim: "nano-SIM", price: 131990 },
+          { color: "White Titanium", memory: "512 GB", sim: "eSIM", price: 146990 }
+        ]
+      },
+      {
+        id: "iphone-16-pro",
+        name: "iPhone 16 Pro",
+        badge: "Премиум",
+        tags: ["best"],
+        description: "Компактный флагман для тех, кому важны камера и скорость.",
+        availability: "В наличии и под заказ",
+        variants: [
+          { color: "Black Titanium", memory: "128 GB", sim: "eSIM", price: 109990 },
+          { color: "Natural Titanium", memory: "256 GB", sim: "nano-SIM", price: 118990 },
+          { color: "White Titanium", memory: "512 GB", sim: "eSIM", price: 136990 }
+        ]
+      },
+      {
+        id: "iphone-16",
+        name: "iPhone 16",
+        badge: "Популярный",
+        tags: ["best"],
+        description: "Актуальная модель по разумной цене.",
+        availability: "В наличии",
+        variants: [
+          { color: "Black", memory: "128 GB", sim: "eSIM", price: 81990 },
+          { color: "Pink", memory: "128 GB", sim: "eSIM", price: 82990 },
+          { color: "Ultramarine", memory: "256 GB", sim: "nano-SIM", price: 91990 }
+        ]
+      },
+      {
+        id: "iphone-15-pro-max",
+        name: "iPhone 15 Pro Max",
+        badge: "Хит продаж",
+        tags: ["best"],
+        description: "Одна из самых востребованных моделей для фото, видео и работы.",
+        availability: "В наличии и под заказ",
+        variants: [
+          { color: "Black Titanium", memory: "256 GB", sim: "eSIM", price: 109990 },
+          { color: "Natural Titanium", memory: "256 GB", sim: "nano-SIM", price: 111990 },
+          { color: "Blue Titanium", memory: "512 GB", sim: "eSIM", price: 126990 }
+        ]
+      },
+      {
+        id: "iphone-15-pro",
+        name: "iPhone 15 Pro",
+        badge: "Премиум",
+        tags: ["best"],
+        description: "Компактный и мощный вариант с премиальными характеристиками.",
+        availability: "В наличии",
+        variants: [
+          { color: "Black Titanium", memory: "128 GB", sim: "eSIM", price: 94990 },
+          { color: "Natural Titanium", memory: "256 GB", sim: "nano-SIM", price: 103990 },
+          { color: "White Titanium", memory: "512 GB", sim: "eSIM", price: 120990 }
+        ]
+      },
+      {
+        id: "iphone-15",
+        name: "iPhone 15",
+        badge: "Выгодно",
+        tags: ["budget", "best"],
+        description: "Оптимальное сочетание актуальности, цены и возможностей.",
+        availability: "В наличии",
+        variants: [
+          { color: "Black", memory: "128 GB", sim: "eSIM", price: 69990 },
+          { color: "Blue", memory: "128 GB", sim: "nano-SIM", price: 70990 },
+          { color: "Pink", memory: "256 GB", sim: "eSIM", price: 79990 },
+          { color: "Green", memory: "512 GB", sim: "nano-SIM", price: 96990 }
+        ]
+      }
+    ];
+
+    const extraProducts = [
+      { id: "macbook-air-m2", name: 'MacBook Air 13" M2 — от 92 990 ₽' },
+      { id: "macbook-air-m3", name: 'MacBook Air 13" M3 — от 109 990 ₽' },
+      { id: "dyson-airwrap", name: "Dyson Airwrap Complete Long — от 54 990 ₽" },
+      { id: "dyson-supersonic", name: "Dyson Supersonic — от 34 990 ₽" },
+      { id: "custom-request", name: "Индивидуальный запрос: Samsung / Dyson / MacBook / другое" }
+    ];
+
+    const iphoneCatalog = document.getElementById("iphoneCatalog");
+    const filterBar = document.getElementById("filterBar");
+    const orderProduct = document.getElementById("orderProduct");
+    const orderPreview = document.getElementById("orderPreview");
+    const whatsappLink = document.getElementById("whatsappLink");
+    const telegramLink = document.getElementById("telegramLink");
+    const callbackWhatsapp = document.getElementById("callbackWhatsapp");
+    const callbackTelegram = document.getElementById("callbackTelegram");
+
+    function formatPrice(price) {
+      return new Intl.NumberFormat("ru-RU").format(price) + " ₽";
+    }
+
+    function getMinPrice(product) {
+      return Math.min(...product.variants.map(v => v.price));
+    }
+
+    function getUniqueValues(product, key) {
+      return [...new Set(product.variants.map(v => v[key]))];
+    }
+
+    function findMatchingVariant(product, color, memory, sim) {
+      return product.variants.find(v => v.color === color && v.memory === memory && v.sim === sim);
+    }
+
+    function buildWhatsAppLink(text) {
+      return `https://wa.me/${CONTACTS.whatsapp}?text=${encodeURIComponent(text)}`;
+    }
+
+    function buildTelegramLink(text) {
+      return `https://t.me/${CONTACTS.telegram}?text=${encodeURIComponent(text)}`;
+    }
+
+    const PLACEHOLDER_PRODUCT_IMG = "assets/placeholder-product.svg";
+
+    function resolveProductImage(product, color) {
+      if (product.imageByColor && product.imageByColor[color]) {
+        return product.imageByColor[color];
+      }
+      return PLACEHOLDER_PRODUCT_IMG;
+    }
+
+    function renderCatalog(filter = "all") {
+      iphoneCatalog.innerHTML = "";
+
+      const filtered = iphoneProducts.filter(product => {
+        if (filter === "all") return true;
+        return product.tags.includes(filter);
+      });
+
+      filtered.forEach((product, cardIndex) => {
+        const minPrice = getMinPrice(product);
+        const colors = getUniqueValues(product, "color");
+        const memories = getUniqueValues(product, "memory");
+        const sims = getUniqueValues(product, "sim");
+
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.style.animationDelay = `${cardIndex * 0.055}s`;
+
+        card.innerHTML = `
+          <div class="product-head">
+            <div>
+              <h3>${product.name}</h3>
+              <p>${product.description}</p>
+              <div class="product-meta">
+                <span class="pill">${product.badge}</span>
+                <span class="pill">${product.availability}</span>
+                <span class="pill">Подарок: стекло + чехол</span>
+              </div>
+            </div>
+            <div class="price-from">от ${formatPrice(minPrice)}</div>
+          </div>
+
+          <div class="product-visual-wrap">
+            <div class="product-visual">
+              <img class="product-img" src="" alt="" width="400" height="400" loading="lazy" decoding="async" />
+            </div>
+          </div>
+
+          <div class="selectors">
+            <div class="selector-group">
+              <label>Цвет</label>
+              <select class="variant-color"></select>
+            </div>
+
+            <div class="selector-group">
+              <label>Память</label>
+              <select class="variant-memory"></select>
+            </div>
+
+            <div class="selector-group">
+              <label>Тип SIM</label>
+              <select class="variant-sim"></select>
+            </div>
+          </div>
+
+          <div class="selected-price">
+            <div class="selected-price-label">Цена выбранной комплектации</div>
+            <div class="selected-price-value">—</div>
+            <div class="selected-summary">Выберите параметры товара</div>
+          </div>
+
+          <div class="product-actions">
+            <button class="btn btn-primary btn-full add-to-order">Выбрать для заявки</button>
+            <a class="btn btn-secondary btn-full quick-wa" href="#" target="_blank" rel="noopener noreferrer">
+              Быстрая заявка в WhatsApp
+            </a>
+          </div>
+        `;
+
+        const colorSelect = card.querySelector(".variant-color");
+        const memorySelect = card.querySelector(".variant-memory");
+        const simSelect = card.querySelector(".variant-sim");
+        const priceValue = card.querySelector(".selected-price-value");
+        const summary = card.querySelector(".selected-summary");
+        const addToOrderBtn = card.querySelector(".add-to-order");
+        const quickWaBtn = card.querySelector(".quick-wa");
+        const productImg = card.querySelector(".product-img");
+
+        colors.forEach(color => {
+          const option = document.createElement("option");
+          option.value = color;
+          option.textContent = color;
+          colorSelect.appendChild(option);
+        });
+
+        memories.forEach(memory => {
+          const option = document.createElement("option");
+          option.value = memory;
+          option.textContent = memory;
+          memorySelect.appendChild(option);
+        });
+
+        sims.forEach(sim => {
+          const option = document.createElement("option");
+          option.value = sim;
+          option.textContent = sim;
+          simSelect.appendChild(option);
+        });
+
+        let productImgReady = false;
+
+        function syncVariant() {
+          let variant = findMatchingVariant(product, colorSelect.value, memorySelect.value, simSelect.value);
+
+          if (!variant) {
+            variant = product.variants.find(v => v.color === colorSelect.value) || product.variants[0];
+            colorSelect.value = variant.color;
+            memorySelect.value = variant.memory;
+            simSelect.value = variant.sim;
+          }
+
+          priceValue.textContent = formatPrice(variant.price);
+          summary.textContent = `${product.name} • ${variant.color} • ${variant.memory} • ${variant.sim}`;
+
+          const imgUrl = resolveProductImage(product, variant.color);
+          productImg.src = imgUrl;
+          productImg.alt = `${product.name}, цвет ${variant.color}`;
+          if (productImgReady) {
+            productImg.classList.remove("img-swap");
+            void productImg.offsetWidth;
+            productImg.classList.add("img-swap");
+          }
+          productImgReady = true;
+
+          const quickText =
+            `Здравствуйте! Интересует техника.\n` +
+            `Модель: ${product.name}\n` +
+            `Цвет: ${variant.color}\n` +
+            `Память: ${variant.memory}\n` +
+            `Тип SIM: ${variant.sim}\n` +
+            `Цена: ${formatPrice(variant.price)}\n` +
+            `Город: Элиста\n` +
+            `Прошу уточнить наличие и доставку.`;
+
+          quickWaBtn.href = buildWhatsAppLink(quickText);
+
+          addToOrderBtn.onclick = () => {
+            const selectedName = `${product.name} • ${variant.color} • ${variant.memory} • ${variant.sim} • ${formatPrice(variant.price)}`;
+
+            const exists = [...orderProduct.options].some(opt => opt.value === selectedName);
+            if (!exists) {
+              const opt = document.createElement("option");
+              opt.value = selectedName;
+              opt.textContent = selectedName;
+              orderProduct.appendChild(opt);
+            }
+
+            orderProduct.value = selectedName;
+            updateOrderPreview();
+            document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+          };
+        }
+
+        colorSelect.addEventListener("change", syncVariant);
+        memorySelect.addEventListener("change", syncVariant);
+        simSelect.addEventListener("change", syncVariant);
+
+        syncVariant();
+        iphoneCatalog.appendChild(card);
+      });
+    }
+
+    filterBar.addEventListener("click", (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+
+      document.querySelectorAll(".chip").forEach(chip => chip.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.dataset.filter;
+      renderCatalog(filter);
+    });
+
+    function populateOrderProducts() {
+      orderProduct.innerHTML = "";
+
+      const defaultOpt = document.createElement("option");
+      defaultOpt.value = "";
+      defaultOpt.textContent = "Выберите товар или вариант из каталога";
+      orderProduct.appendChild(defaultOpt);
+
+      iphoneProducts.forEach(product => {
+        product.variants.forEach(variant => {
+          const option = document.createElement("option");
+          option.value = `${product.name} • ${variant.color} • ${variant.memory} • ${variant.sim} • ${formatPrice(variant.price)}`;
+          option.textContent = `${product.name} • ${variant.color} • ${variant.memory} • ${variant.sim} • ${formatPrice(variant.price)}`;
+          orderProduct.appendChild(option);
+        });
+      });
+
+      extraProducts.forEach(product => {
+        const option = document.createElement("option");
+        option.value = product.name;
+        option.textContent = product.name;
+        orderProduct.appendChild(option);
+      });
+    }
+
+    function updateOrderPreview() {
+      const name = document.getElementById("customerName").value.trim();
+      const phone = document.getElementById("customerPhone").value.trim();
+      const comment = document.getElementById("customerComment").value.trim();
+      const product = orderProduct.value.trim();
+
+      let text = "Здравствуйте! Хочу оставить заявку.\n";
+
+      if (product) text += `Товар: ${product}\n`;
+      if (name) text += `Имя: ${name}\n`;
+      if (phone) text += `Телефон: ${phone}\n`;
+      text += "Город: Элиста\n";
+      text += "Интересует наличие и итоговые условия.\n";
+      if (comment) text += `Комментарий: ${comment}\n`;
+
+      orderPreview.textContent = text;
+      whatsappLink.href = buildWhatsAppLink(text);
+      telegramLink.href = buildTelegramLink(text);
+    }
+
+    function updateCallbackLinks() {
+      const name = document.getElementById("callbackName").value.trim();
+      const phone = document.getElementById("callbackPhone").value.trim();
+      const text = document.getElementById("callbackText").value.trim();
+
+      let message = "Здравствуйте! Прошу перезвонить мне.\n";
+      if (name) message += `Имя: ${name}\n`;
+      if (phone) message += `Телефон: ${phone}\n`;
+      message += "Город: Элиста\n";
+      if (text) message += `Запрос: ${text}\n`;
+
+      callbackWhatsapp.href = buildWhatsAppLink(message);
+      callbackTelegram.href = buildTelegramLink(message);
+    }
+
+    ["customerName", "customerPhone", "customerComment"].forEach(id => {
+      document.getElementById(id).addEventListener("input", updateOrderPreview);
+    });
+    orderProduct.addEventListener("change", updateOrderPreview);
+
+    ["callbackName", "callbackPhone", "callbackText"].forEach(id => {
+      document.getElementById(id).addEventListener("input", updateCallbackLinks);
+    });
+
+    populateOrderProducts();
+    renderCatalog("all");
+    updateOrderPreview();
+    updateCallbackLinks();
+
+    if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+      navigator.serviceWorker.register("./sw.js").catch(() => {});
+    }
+  </script>
+</body>
+</html>

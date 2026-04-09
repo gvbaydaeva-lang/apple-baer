@@ -1,0 +1,10 @@
+{
+  "name": "apple-buyer-pwa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PWA-витрина байера: Apple, Dyson, Samsung (Элиста)",
+  "scripts": {
+    "start": "npx --yes serve -l 5173 .",
+    "preview": "npx --yes serve -l 5173 ."
+  }
+}

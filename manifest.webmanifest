@@ -1,0 +1,20 @@
+{
+  "name": "Техника Apple — байер Элиста",
+  "short_name": "Техника",
+  "description": "iPhone, MacBook, Dyson и Samsung: наличие и заказ в Элисте",
+  "lang": "ru",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b1020",
+  "theme_color": "#4f8cff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
