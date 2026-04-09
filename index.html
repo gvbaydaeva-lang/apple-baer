@@ -11,6 +11,9 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg" />
   <link rel="apple-touch-icon" href="assets/icons/icon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #0b1020;
@@ -38,13 +41,24 @@
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: "Manrope", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
       background:
         radial-gradient(circle at top right, rgba(123, 97, 255, 0.22), transparent 28%),
         radial-gradient(circle at top left, rgba(79, 140, 255, 0.22), transparent 24%),
         linear-gradient(180deg, #0a0f1c 0%, #10172a 100%);
       color: var(--text);
       min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
     .app {
@@ -52,6 +66,8 @@
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 14px 14px 110px;
+      position: relative;
+      z-index: 1;
     }
 
     .topbar {
@@ -138,7 +154,18 @@
       box-shadow: var(--shadow);
       overflow: hidden;
       position: relative;
-      animation: heroPulse 10s ease-in-out infinite alternate;
+      animation: heroPulse 10s ease-in-out infinite alternate, heroFadeIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes heroFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.99);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     @keyframes heroPulse {
@@ -215,6 +242,21 @@
       transform: scale(0.98);
     }
 
+    @media (hover: hover) and (pointer: fine) {
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+      }
+
+      .btn-primary:hover {
+        box-shadow: 0 14px 32px rgba(79, 140, 255, 0.35);
+      }
+
+      .btn:active {
+        transform: scale(0.98) translateY(0);
+      }
+    }
+
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #fff;
@@ -245,6 +287,29 @@
       font-weight: 900;
       margin: 0 0 12px;
       letter-spacing: -0.02em;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 44px;
+      height: 3px;
+      border-radius: 3px;
+      margin-top: 8px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      animation: titleAccent 2.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleAccent {
+      from {
+        width: 38px;
+        opacity: 0.78;
+      }
+      to {
+        width: 70px;
+        opacity: 1;
+      }
     }
 
     .section-subtitle {
@@ -255,10 +320,31 @@
     }
 
     .info-grid,
-    .mini-grid,
-    .review-grid {
+    .mini-grid {
       display: grid;
       gap: 10px;
+    }
+
+    .stagger-fade > * {
+      animation: staggerFade 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .stagger-fade > *:nth-child(1) { animation-delay: 0.04s; }
+    .stagger-fade > *:nth-child(2) { animation-delay: 0.1s; }
+    .stagger-fade > *:nth-child(3) { animation-delay: 0.16s; }
+    .stagger-fade > *:nth-child(4) { animation-delay: 0.22s; }
+    .stagger-fade > *:nth-child(5) { animation-delay: 0.28s; }
+    .stagger-fade > *:nth-child(6) { animation-delay: 0.34s; }
+
+    @keyframes staggerFade {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .info-card,
@@ -636,6 +722,178 @@
       font-weight: 700;
     }
 
+    .review-stack-section {
+      margin-top: 10px;
+    }
+
+    .review-stack-hint {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .review-stack-viewport {
+      display: flex;
+      justify-content: center;
+      padding: 6px 0 8px;
+      min-height: 420px;
+      touch-action: manipulation;
+    }
+
+    .review-stack-deck {
+      position: relative;
+      width: min(100%, 336px);
+      height: 420px;
+    }
+
+    .review-stack-deck.reduce-motion .review-stack-card {
+      transition-duration: 0.01ms;
+    }
+
+    .review-stack-card {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      max-height: 420px;
+      border-radius: var(--radius);
+      padding: 20px 18px 18px;
+      background: rgba(19, 26, 46, 0.72);
+      border: 2px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--shadow), 0 0 0 1px rgba(79, 140, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 10px;
+      align-content: start;
+      transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.35s ease,
+        filter 0.35s ease,
+        box-shadow 0.35s ease;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .review-stack-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .review-stack-avatar {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      margin: 0 auto;
+      display: block;
+      pointer-events: none;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .review-stack-card .stars {
+      text-align: center;
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      background: linear-gradient(90deg, #ffd36a, #ffb347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .review-stack-card .review-quote {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .review-stack-card .review-author {
+      text-align: center;
+      margin-top: auto;
+      padding-top: 6px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .review-stack-card.pos-front {
+      z-index: 5;
+      transform: translateX(calc(var(--drag-x, 0px))) rotate(-5deg) scale(1);
+      opacity: 1;
+      cursor: grab;
+      filter: none;
+    }
+
+    .review-stack-card.pos-front:active {
+      cursor: grabbing;
+    }
+
+    .review-stack-card.pos-mid {
+      z-index: 4;
+      transform: translateX(16%) rotate(0deg) scale(0.97);
+      opacity: 0.93;
+      filter: brightness(0.96);
+    }
+
+    .review-stack-card.pos-back {
+      z-index: 3;
+      transform: translateX(32%) rotate(5deg) scale(0.94);
+      opacity: 0.84;
+      filter: brightness(0.92);
+    }
+
+    .review-stack-card.pos-far {
+      z-index: 2;
+      transform: translateX(46%) rotate(8deg) scale(0.9);
+      opacity: 0.7;
+      filter: brightness(0.88);
+    }
+
+    .review-stack-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .review-stack-actions .btn {
+      min-width: 120px;
+    }
+
+    .review-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .review-dot {
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .review-dot.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      transform: scale(1.25);
+      box-shadow: 0 0 12px rgba(79, 140, 255, 0.45);
+    }
+
     .order-panel h3,
     .callback-panel h3,
     .footer-card h3 {
@@ -729,8 +987,7 @@
       .info-grid,
       .mini-grid,
       .advantages,
-      .catalog-layout,
-      .review-grid {
+      .catalog-layout {
         grid-template-columns: 1fr 1fr;
       }
 
@@ -743,11 +1000,23 @@
       .hero,
       .product-card,
       .buyer-photo,
-      .product-img.img-swap {
+      .product-img.img-swap,
+      .stagger-fade > * {
         animation: none !important;
       }
 
+      .section-title::after {
+        animation: none !important;
+        width: 48px;
+        opacity: 1;
+      }
+
       .product-card {
+        opacity: 1;
+        transform: none;
+      }
+
+      .stagger-fade > * {
         opacity: 1;
         transform: none;
       }
@@ -795,7 +1064,7 @@
         Доступны устройства в наличии и под заказ. Доставка по Элисте — 1–2 дня.
       </p>
 
-      <div class="info-grid">
+      <div class="info-grid stagger-fade">
         <div class="info-card">
           <div class="icon-line">
             <div class="icon">✅</div>
@@ -867,7 +1136,7 @@
     <section class="section" id="advantages">
       <h2 class="section-title">Преимущества</h2>
 
-      <div class="advantages">
+      <div class="advantages stagger-fade">
         <div class="adv-item">
           <div class="adv-icon">💸</div>
           <div>
@@ -958,44 +1227,92 @@
 
     <section class="section" id="reviews">
       <h2 class="section-title">Отзывы довольных покупателей</h2>
-      <p class="section-subtitle">Блок можно использовать как социальное доказательство на странице.</p>
+      <p class="section-subtitle">
+        Перелистывайте стопку: верхняя карточка уходит влево — на переднем плане следующий отзыв. Можно свайпнуть или нажать «Далее».
+      </p>
 
-      <div class="review-grid">
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p>
-            Очень быстро помогли подобрать iPhone, всё подробно объяснили по памяти и SIM.
-            Доставка была на следующий день, телефон оригинальный, всё отлично.
-          </p>
-          <div class="review-author">— Алина, Элиста</div>
+      <div class="review-stack-section">
+        <p class="review-stack-hint">Свайп верхней карточки влево — следующий отзыв • Точки внизу — быстрый переход</p>
+
+        <div class="review-stack-viewport">
+          <div class="review-stack-deck" id="reviewStack" aria-live="polite">
+            <article class="review-stack-card pos-front" data-index="0">
+              <img
+                class="review-stack-avatar"
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=256&h=256&fit=crop&crop=faces"
+                alt=""
+                width="128"
+                height="128"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="stars">★★★★★</div>
+              <p class="review-quote">
+                Очень быстро помогли подобрать iPhone, всё подробно объяснили по памяти и SIM. Доставка на следующий день,
+                телефон оригинальный — всё отлично.
+              </p>
+              <div class="review-author">Алина · Элиста</div>
+            </article>
+
+            <article class="review-stack-card pos-mid" data-index="1">
+              <img
+                class="review-stack-avatar"
+                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=256&h=256&fit=crop&crop=faces"
+                alt=""
+                width="128"
+                height="128"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="stars">★★★★★</div>
+              <p class="review-quote">
+                Заказывала Dyson под запрос. Пришло в срок, упаковано аккуратно — качеством полностью довольна.
+              </p>
+              <div class="review-author">Марина · Элиста</div>
+            </article>
+
+            <article class="review-stack-card pos-back" data-index="2">
+              <img
+                class="review-stack-avatar"
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=256&h=256&fit=crop&crop=faces"
+                alt=""
+                width="128"
+                height="128"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="stars">★★★★★</div>
+              <p class="review-quote">
+                Подобрали iPhone по бюджету, приятная цена, в подарок стекло и чехол. Рекомендую.
+              </p>
+              <div class="review-author">Тимур · Элиста</div>
+            </article>
+
+            <article class="review-stack-card pos-far" data-index="3">
+              <img
+                class="review-stack-avatar"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=256&h=256&fit=crop&crop=faces"
+                alt=""
+                width="128"
+                height="128"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="stars">★★★★★</div>
+              <p class="review-quote">
+                Покупали MacBook — спокойно и без суеты. Видно, что давно в технике и знает, что предлагает.
+              </p>
+              <div class="review-author">Саина · Элиста</div>
+            </article>
+          </div>
         </div>
 
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p>
-            Заказывала Dyson под запрос. Всё пришло в оговоренный срок, упаковано аккуратно,
-            качеством полностью довольна.
-          </p>
-          <div class="review-author">— Марина, Элиста</div>
+        <div class="review-stack-actions">
+          <button type="button" class="btn btn-secondary" id="reviewPrev" aria-label="Предыдущий отзыв">Назад</button>
+          <button type="button" class="btn btn-primary" id="reviewNext" aria-label="Следующий отзыв">Далее</button>
         </div>
 
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p>
-            Подобрали iPhone по бюджету, сделали приятную цену, ещё и стекло с чехлом подарили.
-            Рекомендую.
-          </p>
-          <div class="review-author">— Тимур, Элиста</div>
-        </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p>
-            Покупали MacBook, всё прошло спокойно и без лишней суеты. Видно, что человек давно
-            занимается техникой и знает, что предлагает.
-          </p>
-          <div class="review-author">— Саина, Элиста</div>
-        </div>
+        <div class="review-dots" id="reviewDots" role="tablist" aria-label="Выбор отзыва"></div>
       </div>
     </section>
 
@@ -1539,6 +1856,148 @@
     renderCatalog("all");
     updateOrderPreview();
     updateCallbackLinks();
+
+    (function initReviewStack() {
+      const deck = document.getElementById("reviewStack");
+      const dotsHost = document.getElementById("reviewDots");
+      const btnPrev = document.getElementById("reviewPrev");
+      const btnNext = document.getElementById("reviewNext");
+      if (!deck || !dotsHost) return;
+
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduced) deck.classList.add("reduce-motion");
+
+      const cards = Array.from(deck.querySelectorAll(".review-stack-card"));
+      const n = cards.length;
+      const slotNames = ["front", "mid", "back", "far"].slice(0, n);
+      let positions = slotNames.slice();
+
+      function applyPositions() {
+        cards.forEach((card, i) => {
+          card.classList.remove("pos-front", "pos-mid", "pos-back", "pos-far");
+          card.classList.add("pos-" + positions[i]);
+          if (positions[i] === "front") {
+            card.setAttribute("data-is-front", "");
+          } else {
+            card.removeAttribute("data-is-front");
+          }
+        });
+        const frontIdx = positions.indexOf("front");
+        const author = cards[frontIdx]?.querySelector(".review-author");
+        if (author) {
+          deck.setAttribute("aria-label", "Отзывы покупателей, сейчас: " + author.textContent.trim());
+        }
+        dotsHost.querySelectorAll(".review-dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === frontIdx);
+          dot.setAttribute("aria-selected", i === frontIdx ? "true" : "false");
+        });
+      }
+
+      function rotateNext() {
+        positions.unshift(positions.pop());
+        applyPositions();
+      }
+
+      function rotatePrev() {
+        positions.push(positions.shift());
+        applyPositions();
+      }
+
+      function goToFrontIndex(targetIdx) {
+        const cur = positions.indexOf("front");
+        let steps = (targetIdx - cur + n) % n;
+        const copy = positions.slice();
+        for (let s = 0; s < steps; s++) {
+          copy.unshift(copy.pop());
+        }
+        positions = copy;
+        applyPositions();
+      }
+
+      dotsHost.innerHTML = "";
+      cards.forEach((_, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "review-dot" + (i === 0 ? " active" : "");
+        b.setAttribute("role", "tab");
+        b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+        b.setAttribute("aria-label", "Показать отзыв " + (i + 1));
+        b.addEventListener("click", () => {
+          goToFrontIndex(i);
+          resetAuto();
+        });
+        dotsHost.appendChild(b);
+      });
+
+      let autoTimer;
+      function resetAuto() {
+        clearInterval(autoTimer);
+        if (prefersReduced) return;
+        autoTimer = setInterval(rotateNext, 8500);
+      }
+
+      btnNext?.addEventListener("click", () => {
+        rotateNext();
+        resetAuto();
+      });
+      btnPrev?.addEventListener("click", () => {
+        rotatePrev();
+        resetAuto();
+      });
+
+      let dragStartX = null;
+      let activeCard = null;
+
+      deck.addEventListener("pointerdown", (e) => {
+        const card = e.target.closest(".review-stack-card");
+        if (!card || !card.hasAttribute("data-is-front")) return;
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        dragStartX = e.clientX;
+        activeCard = card;
+        card.style.transition = "none";
+        try {
+          card.setPointerCapture(e.pointerId);
+        } catch (_) {}
+      });
+
+      function finishDrag(e, endX) {
+        if (!activeCard) return;
+        const card = activeCard;
+        card.style.transition = "";
+        card.style.removeProperty("--drag-x");
+        if (dragStartX != null && endX != null) {
+          if (dragStartX - endX > 64) {
+            rotateNext();
+            resetAuto();
+          } else if (endX - dragStartX > 64) {
+            rotatePrev();
+            resetAuto();
+          }
+        }
+        try {
+          card.releasePointerCapture(e.pointerId);
+        } catch (_) {}
+        activeCard = null;
+        dragStartX = null;
+      }
+
+      deck.addEventListener("pointermove", (e) => {
+        if (activeCard == null || dragStartX == null) return;
+        const dx = e.clientX - dragStartX;
+        activeCard.style.setProperty("--drag-x", `${dx * 0.28}px`);
+      });
+
+      deck.addEventListener("pointerup", (e) => {
+        finishDrag(e, e.clientX);
+      });
+
+      deck.addEventListener("pointercancel", (e) => {
+        finishDrag(e, null);
+      });
+
+      applyPositions();
+      resetAuto();
+    })();
 
     if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
       navigator.serviceWorker.register("./sw.js").catch(() => {});
